@@ -1,6 +1,8 @@
 {
     "trailingComma": "es5",
+    "printWidth": 80,
     "tabWidth": 4,
     "semi": false,
-    "singleQuote": false
+    "singleQuote": false,
+    "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-classnames"]
 }

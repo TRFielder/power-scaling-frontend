@@ -1,7 +1,7 @@
-import React from "react"
 import ReactDOM from "react-dom/client"
 import { RouterProvider, createRouter } from "@tanstack/react-router"
 import { routeTree } from "./routeTree.gen"
+import "./index.css"
 
 // Set up a Router instance
 const router = createRouter({
@@ -16,6 +16,7 @@ declare module "@tanstack/react-router" {
     }
 }
 
+// biome-ignore lint: This element is always going to be here
 const rootElement = document.getElementById("app")!
 
 if (!rootElement.innerHTML) {
