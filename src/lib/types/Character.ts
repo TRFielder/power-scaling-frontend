@@ -4,4 +4,5 @@ type Character = {
     imageUrl: string
     score: number
 }
+
 export default Character

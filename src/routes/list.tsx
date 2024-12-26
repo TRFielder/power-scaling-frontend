@@ -1,4 +1,4 @@
-import { useGetCharactersQuery } from "@/lib/api/hooks"
+import { useGetPairQuery } from "@/lib/api/hooks"
 import { createFileRoute } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/list")({
@@ -6,7 +6,7 @@ export const Route = createFileRoute("/list")({
 })
 
 function RouteComponent() {
-    const { data: characters } = useGetCharactersQuery()
+    const { data: characters } = useGetPairQuery()
     return (
         <div>
             {characters?.map((character) => (

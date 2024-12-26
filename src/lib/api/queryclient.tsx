@@ -8,17 +8,6 @@ export const queryClient = new QueryClient({
         queries: {
             refetchOnWindowFocus: false,
             refetchOnReconnect: false,
-            queryFn: async ({ queryKey: [url] }) => {
-                try {
-                    const data = await fetch(`${baseUrl}/${url}`)
-
-                    const response = data.json()
-
-                    return response
-                } catch (error) {
-                    console.error(error)
-                }
-            },
         },
     },
 })
