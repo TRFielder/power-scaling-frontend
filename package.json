@@ -27,6 +27,7 @@
         "vite": "^6.0.3"
     },
     "dependencies": {
+        "@tanstack/react-query": "^5.62.10",
         "@tanstack/react-router": "^1.87.2",
         "@tanstack/router-devtools": "^1.87.2",
         "prettier-plugin-classnames": "^0.7.5",
