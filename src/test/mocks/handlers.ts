@@ -7,7 +7,7 @@ import { faker } from "@faker-js/faker"
 
 faker.seed(1)
 
-const baseURL = ""
+const baseURL = import.meta.env.VITE_API_URL
 const MAX_ARRAY_LENGTH = 20
 
 let i = 0
