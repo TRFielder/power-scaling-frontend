@@ -1,6 +1,6 @@
 import { server } from "@/test/mocks/node"
 import { afterAll, afterEach, beforeAll } from "vitest"
-import "@testing-library/jest-dom/matchers"
+import "@testing-library/jest-dom/vitest"
 
 beforeAll(() => {
     console.log("Setting up for tests")
