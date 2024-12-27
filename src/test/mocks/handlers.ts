@@ -166,16 +166,14 @@ export function getCharactersControllerGetCharactersOrderedByScore500Response() 
 }
 
 export function getCharactersControllerGetPairOfCharacters200Response() {
-    return [
-        ...new Array(
-            faker.number.int({ min: 1, max: MAX_ARRAY_LENGTH })
-        ).keys(),
-    ].map((_) => ({
-        id: faker.number.int(),
-        name: faker.person.fullName(),
-        imageUrl: faker.image.url(),
-        score: faker.number.int(),
-    }))
+    return [...new Array(faker.number.int({ min: 1, max: 2 })).keys()].map(
+        (_) => ({
+            id: faker.number.int(),
+            name: faker.person.fullName(),
+            imageUrl: faker.image.url(),
+            score: faker.number.int(),
+        })
+    )
 }
 
 export function getCharactersControllerGetPairOfCharacters500Response() {

@@ -4,7 +4,7 @@ import { queries } from "./queries"
 
 const { POST, PATCH, GET } = queries
 
-const { getCharacters, getCharactersSorted } = GET
+const { getCharacters, getCharactersSorted, getPair } = GET
 const { postCharacter } = POST
 const { incrementScore, decrementScore } = PATCH
 
@@ -23,10 +23,10 @@ export const useGetCharactersSortedQuery = () =>
     })
 
 export const useGetPairQuery = () =>
-    useQuery<Character[]>({ queryKey: ["characters/pair"] })
-
-export const useGetSortedCharactersQuery = () =>
-    useQuery<Character[]>({ queryKey: ["characters/sorted"] })
+    useQuery<Character[]>({
+        queryFn: getPair,
+        queryKey: ["pair"],
+    })
 
 export const usePostCharacterMutation = () =>
     useMutation({ mutationFn: postCharacter })

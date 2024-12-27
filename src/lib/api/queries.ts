@@ -30,6 +30,19 @@ export const queries = {
 
             return response.json()
         },
+        getPair: async (): Promise<Character[]> => {
+            const response = await fetch(`${baseUrl}/characters/pair`, {
+                method: "GET",
+            })
+
+            if (!response.ok) {
+                throw new Error(
+                    `Error getting pair of characters: ${response.statusText}`
+                )
+            }
+
+            return response.json()
+        },
     },
     POST: {
         postCharacter: async (formData: FormData) => {
