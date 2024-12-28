@@ -1,4 +1,4 @@
-import type Character from "../types/Character"
+import type Character from "../../types/Character"
 
 const CharacterCard = ({
     character,

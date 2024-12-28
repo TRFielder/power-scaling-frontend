@@ -5,4 +5,9 @@ type Character = {
     score: number
 }
 
+export type CreateCharacter = {
+    name: string
+    image: FileList | null
+}
+
 export default Character

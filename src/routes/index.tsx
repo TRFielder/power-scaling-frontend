@@ -1,6 +1,6 @@
 import { useGetPairQuery } from "@/lib/api/hooks"
 import { createFileRoute } from "@tanstack/react-router"
-import CharacterCard from "@/lib/components/CharacterCard"
+import CharacterCard from "@/lib/components/CharacterCard/CharacterCard"
 
 export const Route = createFileRoute("/")({
     component: HomeComponent,

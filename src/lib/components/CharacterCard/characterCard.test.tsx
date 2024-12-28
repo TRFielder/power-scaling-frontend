@@ -1,8 +1,8 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react"
 import { describe, it, expect, vi, afterEach, beforeEach } from "vitest"
 import { faker } from "@faker-js/faker"
-import type Character from "../types/Character"
-import CharacterCard from "./CharacterCard"
+import type Character from "@/lib/types/Character"
+import CharacterCard from "@/lib/components/CharacterCard/CharacterCard"
 
 describe("CharacterCard component", () => {
     const mockCharacter: Character = {

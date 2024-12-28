@@ -11,11 +11,18 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as NewCharacterImport } from './routes/newCharacter'
 import { Route as ListImport } from './routes/list'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const NewCharacterRoute = NewCharacterImport.update({
+  id: '/newCharacter',
+  path: '/newCharacter',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const ListRoute = ListImport.update({
   id: '/list',
@@ -60,6 +67,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ListImport
       parentRoute: typeof rootRoute
     }
+    '/newCharacter': {
+      id: '/newCharacter'
+      path: '/newCharacter'
+      fullPath: '/newCharacter'
+      preLoaderRoute: typeof NewCharacterImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -69,12 +83,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/list': typeof ListRoute
+  '/newCharacter': typeof NewCharacterRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/list': typeof ListRoute
+  '/newCharacter': typeof NewCharacterRoute
 }
 
 export interface FileRoutesById {
@@ -82,14 +98,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/list': typeof ListRoute
+  '/newCharacter': typeof NewCharacterRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/list'
+  fullPaths: '/' | '/about' | '/list' | '/newCharacter'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/list'
-  id: '__root__' | '/' | '/about' | '/list'
+  to: '/' | '/about' | '/list' | '/newCharacter'
+  id: '__root__' | '/' | '/about' | '/list' | '/newCharacter'
   fileRoutesById: FileRoutesById
 }
 
@@ -97,12 +114,14 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ListRoute: typeof ListRoute
+  NewCharacterRoute: typeof NewCharacterRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ListRoute: ListRoute,
+  NewCharacterRoute: NewCharacterRoute,
 }
 
 export const routeTree = rootRoute
@@ -117,7 +136,8 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
-        "/list"
+        "/list",
+        "/newCharacter"
       ]
     },
     "/": {
@@ -128,6 +148,9 @@ export const routeTree = rootRoute
     },
     "/list": {
       "filePath": "list.tsx"
+    },
+    "/newCharacter": {
+      "filePath": "newCharacter.tsx"
     }
   }
 }

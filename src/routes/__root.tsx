@@ -24,14 +24,6 @@ function RootComponent() {
                         Home
                     </Link>{" "}
                     <Link
-                        to="/about"
-                        activeProps={{
-                            className: "font-bold",
-                        }}
-                    >
-                        About
-                    </Link>
-                    <Link
                         to="/list"
                         activeProps={{
                             className: "font-bold",
@@ -39,9 +31,19 @@ function RootComponent() {
                     >
                         List
                     </Link>
+                    <Link
+                        to="/newCharacter"
+                        activeProps={{
+                            className: "font-bold",
+                        }}
+                    >
+                        Add
+                    </Link>
                 </div>
                 <hr />
-                <Outlet />
+                <section className="flex flex-col items-center">
+                    <Outlet />
+                </section>
                 <TanStackRouterDevtools position="bottom-right" />
             </main>
         </Providers>
