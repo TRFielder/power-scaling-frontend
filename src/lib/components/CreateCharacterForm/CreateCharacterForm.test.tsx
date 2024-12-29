@@ -27,7 +27,7 @@ describe("CreateCharacterForm", () => {
         expect(screen.getByText("Submit")).toBeInTheDocument()
     })
 
-    it("calls submitFunction with correct data when form is submitted", async () => {
+    it("Calls submitFunction with correct data when form is submitted", async () => {
         const file = new File(["image"], "test.png", { type: "image/png" })
         render(<CreateCharacterForm submitFunction={mockSubmitFunction} />)
 
@@ -43,6 +43,66 @@ describe("CreateCharacterForm", () => {
         // Submit the form
         fireEvent.click(screen.getByText("Submit"))
 
-        await waitFor(() => expect(mockSubmitFunction).toHaveBeenCalled())
+        await waitFor(() =>
+            expect(mockSubmitFunction).toHaveBeenCalledWith({
+                name: "Test Character",
+                image: expect.any(FileList),
+            })
+        )
+    })
+
+    it("Doesn't call submitFunction when a name is not entered", async () => {
+        const file = new File(["image"], "test.png", { type: "image/png" })
+        render(<CreateCharacterForm submitFunction={mockSubmitFunction} />)
+
+        const user = userEvent.setup()
+
+        // Fill the inputs
+        const fileInput = screen.getByLabelText("Upload an image")
+        await user.upload(fileInput, file)
+
+        // Submit the form
+        fireEvent.click(screen.getByText("Submit"))
+
+        await waitFor(() => expect(mockSubmitFunction).not.toHaveBeenCalled())
+    })
+
+    it("Doesn't call submitFunction when an image is not uploaded, and shows the expectted validation message", async () => {
+        render(<CreateCharacterForm submitFunction={mockSubmitFunction} />)
+
+        const user = userEvent.setup()
+
+        // Fill the inputs
+        const nameInput = screen.getByPlaceholderText("Name")
+        await user.type(nameInput, "Test Character")
+
+        // Submit the form
+        fireEvent.click(screen.getByText("Submit"))
+
+        await waitFor(() => expect(mockSubmitFunction).not.toHaveBeenCalled())
+    })
+
+    it("Doesn't call submitFunction when the wrong file type is uploaded", async () => {
+        const file = new File(["textfile"], "test.txt", { type: "text/plain" })
+        render(<CreateCharacterForm submitFunction={mockSubmitFunction} />)
+
+        const user = userEvent.setup()
+
+        // Fill the inputs
+        const nameInput = screen.getByPlaceholderText("Name")
+        await user.type(nameInput, "Test Character")
+
+        const fileInput = screen.getByLabelText("Upload an image")
+        await user.upload(fileInput, file)
+
+        // Submit the form
+        fireEvent.click(screen.getByText("Submit"))
+
+        await waitFor(() =>
+            expect(mockSubmitFunction).not.toHaveBeenCalledWith({
+                name: "Test Character",
+                image: expect.any(FileList),
+            })
+        )
     })
 })

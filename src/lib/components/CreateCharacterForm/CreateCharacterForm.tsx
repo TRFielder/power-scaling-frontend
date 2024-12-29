@@ -6,7 +6,11 @@ const CreateCharacterForm = ({
 }: {
     submitFunction: (character: CreateCharacter) => void
 }) => {
-    const { register, handleSubmit } = useForm<CreateCharacter>()
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<CreateCharacter>()
 
     const submitForm: SubmitHandler<CreateCharacter> = (data) => {
         submitFunction(data)
@@ -21,13 +25,33 @@ const CreateCharacterForm = ({
                 placeholder="Name"
                 {...register("name", { required: true })}
             />
+            {errors.name && (
+                <span className="text-red-500 text-sm">
+                    {errors.name.message}
+                </span>
+            )}
             <section className="flex flex-col">
                 <input
                     id="file"
                     type="file"
-                    {...register("image", { required: true })}
+                    accept="image/*"
+                    {...register("image", {
+                        required: true,
+                        validate: (fileList) => {
+                            if (!fileList) return "An image file is required"
+                            const file = fileList[0]
+                            const isImage = file.type.startsWith("image/")
+
+                            return isImage || "Only image files are allowed"
+                        },
+                    })}
                 />
                 <label htmlFor="file">Upload an image</label>
+                {errors.image && (
+                    <span className="text-red-500 text-sm">
+                        {errors.image.message}
+                    </span>
+                )}
             </section>
             <button
                 type="submit"
