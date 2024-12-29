@@ -59,17 +59,20 @@ function HomeComponent() {
     }
 
     return (
-        <div className="p-2 flex flex-row gap-6">
-            <CharacterCard
-                character={characterPair[0]}
-                disabled={scoreUpPending || scoreDownPending}
-                selectAsWinner={selectWinner}
-            />
-            <CharacterCard
-                character={characterPair[1]}
-                disabled={scoreUpPending || scoreDownPending}
-                selectAsWinner={selectWinner}
-            />
-        </div>
+        <>
+            <h1 className="text-3xl font-bold">Who would win in a fight?</h1>
+            <div className="p-2 flex flex-row gap-6">
+                <CharacterCard
+                    character={characterPair[0]}
+                    disabled={scoreUpPending || scoreDownPending}
+                    selectAsWinner={selectWinner}
+                />
+                <CharacterCard
+                    character={characterPair[1]}
+                    disabled={scoreUpPending || scoreDownPending}
+                    selectAsWinner={selectWinner}
+                />
+            </div>
+        </>
     )
 }
