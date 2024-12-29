@@ -11,7 +11,8 @@
         "start": "vite",
         "format": "pnpm exec prettier . --write",
         "check": "pnpm exec prettier . --check",
-        "test": "vitest --environment=jsdom"
+        "test": "vitest --environment=jsdom",
+        "lint": "pnpm biome lint ."
     },
     "devDependencies": {
         "@biomejs/biome": "1.9.4",
