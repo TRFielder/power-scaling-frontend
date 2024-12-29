@@ -18,7 +18,7 @@ export const queries = {
             return response.json()
         },
         getCharactersSorted: async (): Promise<Character[]> => {
-            const response = await fetch(`${baseUrl}/characters`, {
+            const response = await fetch(`${baseUrl}/characters/sorted`, {
                 method: "GET",
             })
 
