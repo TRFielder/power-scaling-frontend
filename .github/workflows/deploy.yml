@@ -6,6 +6,9 @@ on:
         tags:
             - "v*" # Trigger on tags made with format "v1.0" etc
 
+permissions:
+    id-token: write
+
 jobs:
     test:
         runs-on: ubuntu-latest
