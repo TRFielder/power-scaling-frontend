@@ -31,10 +31,8 @@ export const useGetPairQuery = () =>
 export const usePostCharacterMutation = () =>
     useMutation({ mutationFn: postCharacter })
 
-export const useScoreUpMutation = () => {
+export const useScoreUpMutation = () =>
     useMutation({ mutationFn: incrementScore })
-}
 
-export const useScoreDownMutation = () => {
+export const useScoreDownMutation = () =>
     useMutation({ mutationFn: decrementScore })
-}
