@@ -1,4 +1,4 @@
-import { useGetPairQuery } from "@/lib/api/hooks"
+import { useGetCharactersSortedQuery } from "@/lib/api/hooks"
 import { createFileRoute } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/list")({
@@ -6,11 +6,13 @@ export const Route = createFileRoute("/list")({
 })
 
 function RouteComponent() {
-    const { data: characters } = useGetPairQuery()
+    const { data: characters } = useGetCharactersSortedQuery()
     return (
         <div>
             {characters?.map((character) => (
-                <p key={character.id}>{character.name}</p>
+                <p key={character.id}>
+                    {character.name} - {character.score}
+                </p>
             ))}
         </div>
     )

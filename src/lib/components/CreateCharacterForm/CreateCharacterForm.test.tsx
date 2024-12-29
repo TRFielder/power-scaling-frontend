@@ -5,6 +5,7 @@ import {
     waitFor,
     cleanup,
 } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import { vi, describe, beforeEach, expect, it, afterEach } from "vitest"
 import CreateCharacterForm from "@/lib/components/CreateCharacterForm/CreateCharacterForm"
 
@@ -30,16 +31,17 @@ describe("CreateCharacterForm", () => {
         const file = new File(["image"], "test.png", { type: "image/png" })
         render(<CreateCharacterForm submitFunction={mockSubmitFunction} />)
 
+        const user = userEvent.setup()
+
         // Fill the inputs
-        fireEvent.change(screen.getByPlaceholderText("Name"), {
-            target: { value: "Test Character" },
-        })
+        const nameInput = screen.getByPlaceholderText("Name")
+        await user.type(nameInput, "Test Character")
 
         const fileInput = screen.getByLabelText("Upload an image")
-        fireEvent.change(fileInput, { target: { files: [file] } })
+        await user.upload(fileInput, file)
 
         // Submit the form
-        fireEvent.click(screen.getByText(/Submit/i))
+        fireEvent.click(screen.getByText("Submit"))
 
         await waitFor(() => expect(mockSubmitFunction).toHaveBeenCalled())
     })
